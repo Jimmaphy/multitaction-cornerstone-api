@@ -4,8 +4,6 @@
     /// A Hand is a collection of touch points that are related to each other.
     /// Each touch point is represented by a Touch object, and represents a finger on the screen.
     /// </summary>
-    /// <param name="age">The total time the hand has been present in seconds</param>
-    /// <param name="fingers">The collection of touch points related to this hand</param>
     public class Hand
     {
         /// <summary>
@@ -23,6 +21,13 @@
         /// </summary>
         public List<Touch> Fingers { get; private set; }
 
+        /// <summary>
+        /// Create an instance of the Hand class, providing id, age and fingers.
+        /// </summary>
+        /// <param name="id">The unique identifier for this hand</param>
+        /// <param name="age">The total time the hand has been present in seconds</param>
+        /// <param name="fingers">The collection of touch points related to this hand</param>
+        /// <exception cref="ArgumentException"></exception>
         public Hand(int id, int age, List<Touch> fingers)
         {
             if (id < 0) {
