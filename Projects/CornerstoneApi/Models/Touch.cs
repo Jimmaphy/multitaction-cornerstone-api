@@ -6,10 +6,6 @@ namespace MultitactionCornerstoneApi.Models
     /// Contains information about a single touch point on the screen.
     /// A touch points represents a finger on the screen.
     /// </summary>
-    /// <param name="id">The unique identifier for this point</param>
-    /// <param name="age">The total time the point has been present in seconds</param>
-    /// <param name="distance">The distance of the finger from the screen</param>
-    /// <param name="position">The position of the point on the screen</param>
     public class Touch
     {
         /// <summary>
@@ -32,23 +28,24 @@ namespace MultitactionCornerstoneApi.Models
         /// </summary>
         public Vector2 Position { get; private set; }
 
+        /// <summary>
+        /// Create an instance of the Touch class, providing id, age, distance and position.
+        /// The id, age, distance and position should be positive.
+        /// The distance should be smaller than 1.0.
+        /// </summary>
+        /// <param name="id">The unique identifier for this point</param>
+        /// <param name="age">The total time the point has been present in seconds</param>
+        /// <param name="distance">The distance of the finger from the screen</param>
+        /// <param name="position">The position of the point on the screen</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Touch(int id, int age, float distance, Vector2 position) 
         {
-            if (id < 0) {
-                throw new ArgumentException("Id cannot be negative");
-            }
-
-            if (age < 0) {
-                throw new ArgumentException("Age cannot be negative");
-            }
-
-            if (distance < 0.0f || distance > 1.0f) {
-                throw new ArgumentException("Distance should be between 0 and 1");
-            }
-
-            if (position.X < 0.0f || position.Y < 0.0f) {
-                throw new ArgumentException("Position cannot have values lower than 0");
-            }
+            ArgumentOutOfRangeException.ThrowIfNegative(id);
+            ArgumentOutOfRangeException.ThrowIfNegative(age);
+            ArgumentOutOfRangeException.ThrowIfNegative(distance);
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(distance, 1.0f);
+            ArgumentOutOfRangeException.ThrowIfNegative(position.X);
+            ArgumentOutOfRangeException.ThrowIfNegative(position.Y);
 
             Id = id;
             Age = age;

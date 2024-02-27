@@ -35,7 +35,7 @@ namespace MultitactionCornerstoneApiTests
         [TestMethod]
         public void TestNegativeId()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Hand(-1, 1, [touch]));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Hand(-1, 1, [touch]));
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace MultitactionCornerstoneApiTests
         [TestMethod]
         public void TestNegativeAge()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Hand(1, -1, [touch]));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Hand(1, -1, [touch]));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace MultitactionCornerstoneApiTests
         [TestMethod]
         public void TestNullFingers()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Hand(1, 1, null));
+            Assert.ThrowsException<ArgumentNullException>(() => new Hand(1, 1, null));
         }
 
         /// <summary>

@@ -32,7 +32,7 @@ namespace MultitactionCornerstoneApiTests
         [TestMethod]
         public void TestNegativeId()
         {
-            Assert.ThrowsException<ArgumentException>(
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
                 () => new Touch(-1, 1, 1.0f, new Vector2(1.0f, 1.0f))
             );
         }
@@ -44,42 +44,55 @@ namespace MultitactionCornerstoneApiTests
         [TestMethod]
         public void TestNegativeAge()
         {
-            Assert.ThrowsException<ArgumentException>(
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
                 () => new Touch(1, -1, 1.0f, new Vector2(1.0f, 1.0f))
             );
         }
 
         /// <summary>
-        /// Test instantiation with a null value for fingers.
-        /// Initializes the class with null for fingers.
+        /// Test instantiation with a negative distance.
+        /// Initializes the class with -1.0f for distance.
         /// </summary>
         [TestMethod]
         public void TestNegativeDistance()
         {
-            Assert.ThrowsException<ArgumentException>(
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
                 () => new Touch(1, 1, -1.0f, new Vector2(1.0f, 1.0f))
             );
         }
 
         /// <summary>
-        /// Test instantiation with an empty list of touch points.
-        /// Initializes the class with new List<Touch>() for fingers.
+        /// Test instantiation with a higher value for distance.
+        /// Initializes the class with 2.0f for distance.
+        /// </summary>
+        [TestMethod]
+        public void TestGreaterThanOneDistance()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
+                () => new Touch(1, 1, 2.0f, new Vector2(1.0f, 1.0f))
+            );
+        }
+
+        /// <summary>
+        /// Test instantiation with a negative X-position.
+        /// Initializes the class with new Vector2(-1.0f, 1.0f) for position.
         /// </summary>
         [TestMethod]
         public void TestNegativeXPosition()
         {
-            Assert.ThrowsException<ArgumentException>(
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
                 () => new Touch(1, 1, 1.0f, new Vector2(-1.0f, 1.0f))
             );
         }
 
-        // Test instantiation with an empty list of touch points.
-        /// Initializes the class with new List<Touch>() for fingers.
+        /// <summary>
+        /// Test instantiation with a negative Y-position.
+        /// Initializes the class with new Vector2(1.0f, -1.0f) for position.
         /// </summary>
         [TestMethod]
         public void TestNegativeYPosition()
         {
-            Assert.ThrowsException<ArgumentException>(
+            Assert.ThrowsException<ArgumentOutOfRangeException>(
                 () => new Touch(1, 1, 1.0f, new Vector2(1.0f, -1.0f))
             );
         }

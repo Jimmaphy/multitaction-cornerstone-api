@@ -23,22 +23,22 @@
 
         /// <summary>
         /// Create an instance of the Hand class, providing id, age and fingers.
+        /// The id and age should be positive.
+        /// Fingers should be an instance of a list that contains items.
         /// </summary>
         /// <param name="id">The unique identifier for this hand</param>
         /// <param name="age">The total time the hand has been present in seconds</param>
         /// <param name="fingers">The collection of touch points related to this hand</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
         public Hand(int id, int age, List<Touch> fingers)
         {
-            if (id < 0) {
-                throw new ArgumentException("Id cannot be negative");
-            }
+            ArgumentOutOfRangeException.ThrowIfNegative(id);
+            ArgumentOutOfRangeException.ThrowIfNegative(age);
+            ArgumentNullException.ThrowIfNull(fingers);
 
-            if (age < 0) {
-                throw new ArgumentException("Age cannot be negative");
-            }
-
-            if (fingers == null || fingers.Count == 0)
+            if (fingers.Count == 0)
             {
                 throw new ArgumentException("Fingers cannot be null or empty");
             }
