@@ -13,7 +13,7 @@ namespace MultitactionCornerstoneApiTests
         /// <summary>
         /// The touch variable holds a simple instance of the touch class.
         /// </summary>
-        private static Touch touch = new Touch(1, 1, 1, new Vector2(1, 1));
+        private static readonly Touch touch = new(1, 1, 1, new Vector2(1, 1));
 
         /// <summary>
         /// Test instantiation with correct arguments.
@@ -65,7 +65,7 @@ namespace MultitactionCornerstoneApiTests
         [TestMethod]
         public void TestEmptyFingers()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Hand(1, 1, new List<Touch>()));
+            Assert.ThrowsException<ArgumentException>(() => new Hand(1, 1, []));
         }
     }
 }
